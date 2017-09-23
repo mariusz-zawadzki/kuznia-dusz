@@ -1,0 +1,13 @@
+
+.login, .login input{
+    width: 215px;
+}
+.login .form-group{
+    width: 215px;
+}
+.login{
+    align-self: center;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

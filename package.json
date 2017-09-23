@@ -2,10 +2,20 @@
   "name": "kuznia",
   "version": "0.1.0",
   "private": true,
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-jquery": "^2.0.0",
+    "jquery": "^2.2.1"
+  },
   "dependencies": {
     "react": "^15.6.1",
+    "react-bootstrap": "^0.31.3",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.13"
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.13",
+    "redux": "^3.7.2",
+    "redux-form": "^7.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

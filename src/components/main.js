@@ -5,17 +5,19 @@ import SideBar from './navbar/side-bar'
 import Content from './content'
 import TopNavBar from './navbar/top-bar'
 import './navbar.css'
+const BASE_URL = process.env.PUBLIC_URL+"/";
+
 class Main extends Component {
 
     componentDidUpdate() {
         if (!this.props.loggedIn) {
-            this.history.push("/login")
+            this.history.push(BASE_URL+"login")
         }
     }
 
     componentWillMount() {
         if (!this.props.loggedIn) {
-            this.props.history.push("/login")
+            this.props.history.push(BASE_URL+"login")
         }
     }
 

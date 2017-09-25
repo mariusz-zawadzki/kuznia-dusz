@@ -2,20 +2,25 @@
   "name": "kuznia",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "http://monku.vxm.pl/kuznia",
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
     "jquery": "^2.2.1"
   },
   "dependencies": {
+    "draft-js": "^0.10.2",
+    "draft-js-inline-toolbar-plugin": "^2.0.0-rc8",
+    "draft-js-mention-plugin": "^2.0.0-rc8",
+    "draft-js-plugins-editor": "^2.0.0-rc8",
+    "draft-js-static-toolbar-plugin": "^2.0.0-rc8",
+    "es6-shim": "^0.35.3",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.3",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.13",
-    "react-tinymce": "^0.6.0",
-    "react-tinymce-mention": "^0.3.0",
     "redux": "^3.7.2",
     "redux-form": "^7.0.4"
   },

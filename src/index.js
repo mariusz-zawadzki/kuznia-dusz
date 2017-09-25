@@ -8,12 +8,13 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers';
 
+const BASE_URL = process.env.PUBLIC_URL+"/";
+console.log('base url',BASE_URL);
 const createStoreWithMiddleware = applyMiddleware()(createStore);
-
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
-      <App />
+      <App/>
     </BrowserRouter>
   </Provider>
   , document.querySelector('#root'));

@@ -4,6 +4,7 @@ import { Route, /*Switch*/ } from 'react-router-dom'
 import './App.css';
 import Login from './components/login'
 import Main from './components/main'
+const BASE_URL =process.env.PUBLIC_URL+"/";
 class App extends Component {
   render() {
     return (
@@ -12,8 +13,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div> */}
-            <Route path="/login" exact={true}  component={Login}  />
-            <Route path="/" exact={true} component={Main} />
+            <Route path={BASE_URL+"login"} exact={true}  component={Login}  />
+            <Route path={BASE_URL+""} exact={true} component={Main} />
       </div>
     );
   }

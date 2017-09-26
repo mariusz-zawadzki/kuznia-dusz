@@ -1,7 +1,11 @@
 import React from 'react';
 
-const TopNavBar = (props) =>{
-    return(<nav className="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+const  TopNavBar = (props) => {
+    return (<nav/>)
+};
+const TopNavBarTmp= (props) =>{
+    return(
+        <nav className="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
         <button className="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
         </button>

@@ -2,7 +2,7 @@
   "name": "kuznia",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "http://monku.vxm.pl/kuznia",
+  "homepage": "http://monku.vxm.pl/kuznia",
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
@@ -15,6 +15,7 @@
     "draft-js-plugins-editor": "^2.0.0-rc8",
     "draft-js-static-toolbar-plugin": "^2.0.0-rc8",
     "es6-shim": "^0.35.3",
+    "lodash": "^4.17.4",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.3",
     "react-dom": "^15.6.1",

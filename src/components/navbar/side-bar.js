@@ -1,13 +1,28 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
+const BASE_URL = process.env.PUBLIC_URL+"/";
+
 
 const SideBar = (props) =>{
+
+    function getActiveClass(url, className){
+        return props.history.location.pathname === url?className:'';
+    }
+    const ActivableLink = (props) =>{
+        const URL = props.to;
+        return (
+            <Link className={"nav-link " +getActiveClass(URL,"active") } to={URL}>{props.children}</Link>
+        );
+    }
+
     return(
         <nav className="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
             <ul className="nav nav-pills flex-column">
                 <li className="nav-item">
-                    <a className="nav-link active" href="#e">Overview <span className="sr-only">(current)</span></a>
+                    <ActivableLink to={BASE_URL}>Main</ActivableLink>
+                    <ActivableLink to={BASE_URL+"postacie"}>Postacie</ActivableLink>
                 </li>
-                <li className="nav-item">
+                {/*<li className="nav-item">
                     <a className="nav-link" href="#f">Reports</a>
                 </li>
                 <li className="nav-item">
@@ -15,10 +30,10 @@ const SideBar = (props) =>{
                 </li>
                 <li className="nav-item">
                     <a className="nav-link" href="#h">Export</a>
-                </li>
+                </li>*/}
             </ul>
 
-            <ul className="nav nav-pills flex-column">
+            {/*<ul className="nav nav-pills flex-column">
                 <li className="nav-item">
                     <a className="nav-link" href="#i">Nav item</a>
                 </li>
@@ -43,7 +58,7 @@ const SideBar = (props) =>{
                 <li className="nav-item">
                     <a className="nav-link" href="#o">Another nav item</a>
                 </li>
-            </ul>
+            </ul>*/}
         </nav>
 
     )

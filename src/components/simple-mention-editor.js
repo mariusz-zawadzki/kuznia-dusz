@@ -7,7 +7,19 @@ import editorStyles from './editorStyles.css';
 import 'draft-js-static-toolbar-plugin/lib/plugin.css'
 import mentions from './mention';
 import mentions_item from './mention_item';
-
+import {
+    ItalicButton,
+    BoldButton,
+    UnderlineButton,
+    CodeButton,
+    HeadlineOneButton,
+    HeadlineTwoButton,
+    HeadlineThreeButton,
+    UnorderedListButton,
+    OrderedListButton,
+    BlockquoteButton,
+    CodeBlockButton
+} from 'draft-js-buttons';
 
 export default class SimpleMentionEditor extends Component {
 
@@ -18,16 +30,30 @@ export default class SimpleMentionEditor extends Component {
             mentionTrigger: '#',
             entityMutability: 'MUTABLE'
         });
-        this.toolbarPlugin = createToolbarPlugin()
+        this.toolbarPlugin = createToolbarPlugin({structure:[
+            ItalicButton,
+            BoldButton,
+            UnderlineButton,
+            CodeButton,
+            HeadlineOneButton,
+            HeadlineTwoButton,
+            HeadlineThreeButton,
+            UnorderedListButton,
+            OrderedListButton,
+            BlockquoteButton,
+            CodeBlockButton
+        ]})
         this.state = {
             editorState: this.props.content || EditorState.createEmpty(),
             suggestions: mentions,
             suggestions_item: mentions_item,
+            onUpdate: this.props.onUpdate || function(){}
         };
     }
 
 
     onChange = (editorState) => {
+        this.state.onUpdate(editorState);
         this.setState({
             editorState
         });
@@ -58,7 +84,6 @@ export default class SimpleMentionEditor extends Component {
         const MentionSuggestions2 = this.itemMentions.MentionSuggestions;
         const {Toolbar} = this.toolbarPlugin;
         const plugins = [this.mentionPlugin, this.itemMentions, this.toolbarPlugin];
-        console.log(process.env.PUBLIC_URL + "/")
 
         return (
             <div className={editorStyles.editor} onClick={this.focus}>

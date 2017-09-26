@@ -6,8 +6,13 @@
     width: 215px;
 }
 .login{
+    text-align: center;
+}
+.login>.row{
+    width: 215px;
+    display: inline-block;
+    width: 215px;
     align-self: center;
-    display: inline-flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }

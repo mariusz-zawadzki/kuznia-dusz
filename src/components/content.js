@@ -3,7 +3,7 @@ import React from 'react';
 const Content = (props) =>{
     return(
 
-        <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+        <main>
             <h1>Dashboard</h1>
 
             <section className="row text-center placeholders">

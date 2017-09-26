@@ -10,6 +10,9 @@ import { EditorState} from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import 'draft-js-mention-plugin/lib/plugin.css';
 import SimpleMentionEditor  from './simple-mention-editor'
+import CharacterList from './character/characterList'
+import CharacterEditor from './character/editor'
+
 const BASE_URL = process.env.PUBLIC_URL+"/";
 class MyEditor extends React.Component {
     constructor(props) {
@@ -65,6 +68,8 @@ class Login extends Component {
                         Aha i jeszcze jako bonus spróbujcie od '#' :D
                     </h3>
                     <MyEditor />
+                    <br/>
+                    <CharacterEditor content={CharacterList['1'].description} />
                     <h4>Aha i poniżejmozna wpisac cokolwiek i kliknąć zaloguj, pokaże się taki testowy main page, zupene kpiuj wklej :-)</h4>
                     <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                         <Field
@@ -86,7 +91,10 @@ class Login extends Component {
 }
 
 function mapStateToProps(state) {
-    return { loggedIn: state.loggedIn }
+    return {
+        loggedIn: state.loggedIn,
+        characters: state.characters
+    }
 }
 
 function validate(values) {

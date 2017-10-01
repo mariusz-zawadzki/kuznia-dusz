@@ -1,10 +1,14 @@
-#Assumptions
+# Original ideas
 
-- game masters should be able to work offline
-- game masters should be able to fully sync with most recent version of a scenario (per scenario not all of them)
+- I'd like to have a mobile application that would allow me to give informations to players about
+  - other characters
+  - items
+  - powers
+  - it should be able to work offline
+  - it to fully sync with most recent version of a scenario (per scenario not all of them)
 
 
-#Use cases
+# Use cases
 
 ## Game creator use cases
 

@@ -4,10 +4,10 @@ import {CHANGE_AUTH, SAVE_CHARACTER} from './types'
 
 
 export function login(loggedIn, callback) {
-    callback();
     return {
         type: CHANGE_AUTH,
-        payload: loggedIn
+        payload: loggedIn,
+        callback
     }
 }
 

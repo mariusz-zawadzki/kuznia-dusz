@@ -15,6 +15,7 @@
     "draft-js-plugins-editor": "^2.0.0-rc8",
     "draft-js-static-toolbar-plugin": "^2.0.0-rc8",
     "es6-shim": "^0.35.3",
+    "firebase": "^4.5.0",
     "lodash": "^4.17.4",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.3",

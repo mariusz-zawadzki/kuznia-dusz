@@ -14,7 +14,7 @@ let config = {
     projectId: "kuznia-dusz",
     storageBucket: "kuznia-dusz.appspot.com",
     messagingSenderId: "794297029805"
-  };
+};
 
   
 firebase.initializeApp(config);
@@ -39,7 +39,7 @@ class Login extends Component {
             // The signed-in user info.
             var user = result.user;
             console.log(result)
-            localStorage.setItem('auth', result)
+            localStorage.setItem('auth', JSON.stringify(result.additionalUserInfo.profile))
             fun()
 
             // ...

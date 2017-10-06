@@ -1,7 +1,14 @@
 import React from 'react';
 
 const  TopNavBar = (props) => {
-    return (<nav/>)
+    let name = "";
+    if(localStorage.getItem("auth")){
+        let profile = JSON.parse(localStorage.getItem('auth'));
+        name = "Witaj: "+ profile.name;
+    }
+    return (<nav>
+        {name}
+    </nav>)
 };
 const TopNavBarTmp= (props) =>{
     return(

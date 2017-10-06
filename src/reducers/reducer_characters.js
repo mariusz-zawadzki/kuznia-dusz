@@ -1,5 +1,5 @@
 import {SAVE_CHARACTER} from '../actions/types'
-import Characters from '../components/character/characterList'
+import Characters from './../data_mock/characterList'
 export default function (state = Characters, action = {}) {
 
     switch (action.type) {

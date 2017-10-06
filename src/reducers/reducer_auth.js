@@ -7,9 +7,9 @@ export default function (state = false, action = {}) {
             _.delay(action.callback, 1000)
             return action.payload;
         default:
-            if(localStorage.getItem('auth')){
-                return true;
-            }
+            // if(localStorage.getItem('auth')){
+            //     return true;
+            // }
             return state;
     }
 }

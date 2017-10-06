@@ -8,8 +8,6 @@ const BASE_URL = process.env.PUBLIC_URL+"/";
 const SideBar = (props) =>{
 
     function getActiveClass(url, className){
-        console.log('history location',props.location)
-        console.log(url)
         return props.location.pathname === url?className:'';
     }
     const ActivableLink = (props) =>{

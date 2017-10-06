@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import Characters from './characterList'
+import Characters from './../../data_mock/characterList'
 import _ from 'lodash';
 
 const CharacterListDisplay = (props) =>{

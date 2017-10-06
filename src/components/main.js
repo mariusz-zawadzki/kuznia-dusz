@@ -18,14 +18,12 @@ class Main extends Component {
 
     componentDidUpdate() {
         if (!this.props.loggedIn) {
-            console.log('pushing to login')
             this.props.history.push(BASE_URL+"login")
         }
     }
 
     componentWillMount() {
         if (!this.props.loggedIn) {
-            console.log('pushing to login')
             this.props.history.push(BASE_URL+"login")
         }
     }

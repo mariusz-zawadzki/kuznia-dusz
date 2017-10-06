@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react';
 import { connect } from 'react-redux'
 import {ContentState, Editor, EditorState, RichUtils, convertToRaw} from 'draft-js';
 import DraftPasteProcessor from 'draft-js/lib/DraftPasteProcessor';
-import Characters from './characterList'
 import SimpleEditor from '../simple-mention-editor'
 import * as actions from '../../actions'
 class CharacterEditor extends React.Component {

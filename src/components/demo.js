@@ -3,7 +3,7 @@ import { EditorState} from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import 'draft-js-mention-plugin/lib/plugin.css';
 import SimpleMentionEditor  from './simple-mention-editor'
-import CharacterList from './character/characterList'
+import CharacterList from '../data_mock/characterList'
 import CharacterEditor from './character/editor'
 
 class MyEditor extends React.Component {

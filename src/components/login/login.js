@@ -26,9 +26,7 @@ class Login extends Component {
         let history = this.props.history;
         let lgoin = this.props.login.bind(this);
         let fun =function(){
-            console.log('funin')
             lgoin(true, () => {
-                console.log('push!')
                 history.push(BASE_URL+"postacie");
             });
         }
@@ -38,7 +36,6 @@ class Login extends Component {
             var token = result.credential.accessToken;
             // The signed-in user info.
             var user = result.user;
-            console.log(result)
             localStorage.setItem('auth', JSON.stringify(result.additionalUserInfo.profile))
             fun()
 

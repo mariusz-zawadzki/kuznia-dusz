@@ -5,8 +5,8 @@ import createToolbarPlugin from 'draft-js-static-toolbar-plugin';
 import createMentionPlugin, {defaultSuggestionsFilter} from 'draft-js-mention-plugin';
 import editorStyles from './editorStyles.css';
 import 'draft-js-static-toolbar-plugin/lib/plugin.css'
-import mentions from './mention';
-import mentions_item from './mention_item';
+import mentions from './../data_mock/mention';
+import mentions_item from './../data_mock/mention_item';
 import {
     ItalicButton,
     BoldButton,

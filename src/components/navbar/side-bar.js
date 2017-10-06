@@ -1,27 +1,32 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, BrowserRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import * as actions from '../../actions'
 const BASE_URL = process.env.PUBLIC_URL+"/";
 
 
 const SideBar = (props) =>{
 
     function getActiveClass(url, className){
-        return props.history.location.pathname === url?className:'';
+        console.log('history location',props.location)
+        console.log(url)
+        return props.location.pathname === url?className:'';
     }
     const ActivableLink = (props) =>{
         const URL = props.to;
         return (
-            <Link className={"nav-link " +getActiveClass(URL,"active") } to={URL}>{props.children}</Link>
+            <li className="nav-item">
+             <Link className={"nav-link " +getActiveClass(URL,"active") } to={URL}>{props.children}</Link>
+            </li>
         );
     }
 
     return(
         <nav className="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
             <ul className="nav nav-pills flex-column">
-                <li className="nav-item">
                     <ActivableLink to={BASE_URL}>Main</ActivableLink>
                     <ActivableLink to={BASE_URL+"postacie"}>Postacie</ActivableLink>
-                </li>
+                    <ActivableLink to={BASE_URL+"logout"}>Wyloguj</ActivableLink>
                 {/*<li className="nav-item">
                     <a className="nav-link" href="#f">Reports</a>
                 </li>
@@ -64,4 +69,4 @@ const SideBar = (props) =>{
     )
 }
 
-export default SideBar;
+export default connect(null, actions)(SideBar);

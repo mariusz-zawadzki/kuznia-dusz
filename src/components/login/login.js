@@ -86,7 +86,8 @@ class Login extends Component {
                 <h4>wystarczy nacisnąc guzik</h4>
                 <div className="row align-items-center">
                     <div className="col-sm">
-                        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                        <Button bsStyle="primary" onClick={this.signIn.bind(this)}>Google sign in!</Button>
+                        <form onSubmit={handleSubmit(this.onSubmit.bind(this))} style={{'display':'none'}}>
                             <Field
                                 label="Email"
                                 name="email"
@@ -98,7 +99,6 @@ class Login extends Component {
                                 component={this.renderTitleField}
                             />
                             <Button type="submit" bsStyle="primary">Submit</Button>
-                            <Button onClick={this.signIn.bind(this)}>Google sign in!</Button>
                         </form>
                     </div>
                 </div>

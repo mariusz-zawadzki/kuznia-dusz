@@ -15,9 +15,9 @@ class GamesList extends Component{
             )
         })
         return (
-            <div>
-                <Link className="game=new" to={`${BASE_URL}games/new`}>Add new</Link>
-                <ul className="game-list">
+            <div className="games-list">
+                <Link className="games-new" to={`${BASE_URL}games/new`}>Add new</Link>
+                <ul>
                     {games}
                 </ul>
             </div>
@@ -31,4 +31,5 @@ function mapStateToProps(state){
     }
 }
 
+export const GameListRaw = GamesList;
 export default connect(mapStateToProps)(GamesList);

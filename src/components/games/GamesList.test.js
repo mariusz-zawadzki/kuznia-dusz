@@ -1,7 +1,7 @@
 import test_setup from './../../test_setup'
 import React from 'react';
 import {MemoryRouter} from 'react-router-dom'
-import GamesList from './GamesList';
+import {GameListRaw} from './GamesList';
 import { shallow,mount,  configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import { expect } from 'chai';
@@ -22,20 +22,20 @@ describe('GameList', () => {
 
     let COMPONENT;
     beforeEach(() => {
-        COMPONENT = mount(<MemoryRouter><GamesList games={GAMES} /></MemoryRouter>)
+        COMPONENT = mount(<MemoryRouter><GameListRaw games={GAMES} /></MemoryRouter>)
     })
 
     it('renders without crashing', () => {
-        COMPONENT = mount(<MemoryRouter><GamesList games={[]} /></MemoryRouter>)
+        COMPONENT = mount(<MemoryRouter><GameListRaw games={[]} /></MemoryRouter>)
+        expect(COMPONENT.find('.games-list')).to.have.lengthOf(1)
     });
 
     it('renders proper number of games', ()=>{
-        expect(COMPONENT.find('li')).to.have.lengthOf(2)
+        expect(COMPONENT.find('li')).to.have.lengthOf(GAMES.length)
     })
 
     it('renders new game link/button', ()=>{
-        console.log(COMPONENT.find('.new-game'))
-        expect(COMPONENT.find('a.game-new')).to.have.lengthOf(1)
+        expect(COMPONENT.find('a.games-new')).to.have.lengthOf(1)
     })
 
 });

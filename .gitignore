@@ -24,3 +24,4 @@ yarn-error.log*
 .idea
 #use your own :-)
 .firebaserc
+./src/firebase.js

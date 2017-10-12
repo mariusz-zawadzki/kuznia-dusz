@@ -39,7 +39,6 @@ class GameNew extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     //in case of editing
     if (ownProps.match) {
-        console.log(state.games)
         let newprops = {
             initialValues: state.games.find((game) => game.id === ownProps.match.params.id)
         }

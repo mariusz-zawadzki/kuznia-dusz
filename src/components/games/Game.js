@@ -1,5 +1,4 @@
 import React from 'react'
-import { BASE_URL } from './../../route.consts'
 import { Switch, Route, NavLink } from 'react-router-dom'
 import GameNew from './GameNew'
 import CharacterList from './../characters/CharacterList'
@@ -15,9 +14,9 @@ export default ({match}) => {
             <div>
                 <Switch>
                     {/* edit characters, items or a game */}
-                    <Route path={`${BASE_URL}games/:gameId/characters`} component={CharacterList} />
-                    <Route path={`${BASE_URL}games/:gameId/items`} render={()=><div/>} />
-                    <Route path={`${BASE_URL}games/:id`} component={GameNew} />
+                    <Route path={`/games/:gameId/characters`} component={CharacterList} />
+                    <Route path={`/games/:gameId/items`} render={()=><div/>} />
+                    <Route path={`/games/:id`} component={GameNew} />
                 </Switch>
             </div>
         </div>

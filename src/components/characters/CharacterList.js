@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {BASE_URL} from '../../route.consts'
 
 
 class CharacterList extends Component{
@@ -11,13 +10,13 @@ class CharacterList extends Component{
         let charactersList = characters.map((character)=>{
             return (
                 <li key={character.id} className="list-item">
-                    <Link to={`${BASE_URL}games/${match.params.gameId}/characters/${character.id}`}>{character.name}</Link>
+                    <Link to={`/games/${match.params.gameId}/characters/${character.id}`}>{character.name}</Link>
                 </li>
             )
         })
         return (
             <div>
-                <Link className="character-new" to={`${BASE_URL}games/${match.params.gameId}/characters/new`}>Add new</Link>
+                <Link className="character-new" to={`/games/${match.params.gameId}/characters/new`}>Add new</Link>
                 <ul className="characters-list">
                     {charactersList}
                 </ul>
@@ -32,4 +31,5 @@ function mapStateToProps(state, ownProps){
     }
 }
 
+export const CharacterListRaw = CharacterList;
 export default connect(mapStateToProps)(CharacterList);

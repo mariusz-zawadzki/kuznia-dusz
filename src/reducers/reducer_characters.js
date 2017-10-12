@@ -1,6 +1,6 @@
 import * as types from '../actions/types'
 
-const initial = [{id:1, "name":"TEST ONE"},{id:2, "name":"TEST TWO"}];
+const initial = [{id:'1', "name":"TEST ONE"},{id:'2', "name":"TEST TWO"}];
 export default (state = initial, action)=>{
     switch(action.type){
         case types.SAVE_CHARACTER:

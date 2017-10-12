@@ -42,7 +42,7 @@ const mapStateToProps = (state, ownProps) => {
     if (ownProps.match) {
         let newprops = {
             // properly match initial values8
-            // initialValues: state.characters.find((characters) => characters.id === ownProps.match.params.id)
+            initialValues: state.characters.find((characters) => characters.id === ownProps.match.params.id)
         }
         return newprops;
     }

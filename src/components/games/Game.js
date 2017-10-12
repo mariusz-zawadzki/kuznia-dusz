@@ -2,6 +2,7 @@ import React from 'react'
 import { Switch, Route, NavLink } from 'react-router-dom'
 import GameNew from './GameNew'
 import CharacterList from './../characters/CharacterList'
+import CharacterNew from './../characters/CharacterNew'
 
 export default ({match}) => {
     return (
@@ -14,6 +15,7 @@ export default ({match}) => {
             <div>
                 <Switch>
                     {/* edit characters, items or a game */}
+                    <Route path={`/games/:gameId/characters/:id`} component={CharacterNew} />
                     <Route path={`/games/:gameId/characters`} component={CharacterList} />
                     <Route path={`/games/:gameId/items`} render={()=><div/>} />
                     <Route path={`/games/:id`} component={GameNew} />

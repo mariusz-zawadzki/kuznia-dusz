@@ -1,4 +1,7 @@
 
+global.requestAnimationFrame = function(callback) {
+    setTimeout(callback, 0);
+  };
 let localStorageMock = (function () {
     var store = {};
     return {

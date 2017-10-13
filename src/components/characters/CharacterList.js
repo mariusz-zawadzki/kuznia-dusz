@@ -1,13 +1,13 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 
-class CharacterList extends Component{
+class CharacterList extends Component {
 
-    render(){
-        let {match, characters} = this.props;
-        let charactersList = characters.map((character)=>{
+    render() {
+        let { match, characters } = this.props;
+        let charactersList = characters.map((character) => {
             return (
                 <li key={character.id} className="list-item">
                     <Link to={`/games/${match.params.gameId}/characters/${character.id}`}>{character.name}</Link>
@@ -25,9 +25,11 @@ class CharacterList extends Component{
     }
 }
 
-function mapStateToProps(state, ownProps){
+function mapStateToProps(state, ownProps) {
+    const gameId = ownProps.match.params.gameId;
+    const gameCharacters = state.characters[gameId] || {ids:[],map: {}};
     return {
-        characters: state.characters
+        characters: gameCharacters.ids.map((id) => gameCharacters.map[id])
     }
 }
 

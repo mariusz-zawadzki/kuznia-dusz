@@ -24,3 +24,19 @@
   to { transform: rotate(360deg); }
 }
 */
+/* .center {
+  text-align:center;
+}
+
+.center form {
+  display:inline-block;
+} */
+
+.btn{
+  cursor: pointer;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}

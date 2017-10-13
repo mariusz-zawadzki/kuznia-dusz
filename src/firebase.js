@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+require("firebase/firestore");
 
 let config = {
   apiKey: "AIzaSyDBF6MaupuuexWvdt54OW7t5UHcs1rAijo",
@@ -8,4 +9,8 @@ let config = {
   storageBucket: "kuznia-dusz.appspot.com",
   messagingSenderId: "794297029805"
 };
-export default firebase.initializeApp(config);
+const fbase = firebase.initializeApp(config);
+
+export const firestore = firebase.firestore().enablePersistence();
+
+export default fbase;

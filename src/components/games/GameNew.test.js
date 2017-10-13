@@ -23,9 +23,6 @@ const GAME =
 describe('GameNew', () => {
 
     let COMPONENT;
-    // beforeEach(() => {
-    //     COMPONENT = mount(<MemoryRouter><GameNewForm games={GAMES} /></MemoryRouter>)
-    // })
 
     it('renders without crashing', () => {
         const store = mockStore({ games: [GAME] })

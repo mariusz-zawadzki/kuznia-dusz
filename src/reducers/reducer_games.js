@@ -1,28 +1,29 @@
 import * as types from '../actions/types'
 
-const initial = [
-    {
-        "id":"1",
-        "name":"game one"
-    },
-    {
-        "id":"2",
-        "name":"game two"
+const initial = {
+    ids: ['1', '2'],
+    map: {
+        '1': {
+            "id": "1",
+            "name": "game one"
+        },
+        '2': {
+            "id": "2",
+            "name": "game two"
+        }
     }
-];
-export default (state = initial, action)=>{
-    switch(action.type){
+};
+export default (state = initial, action) => {
+    switch (action.type) {
         case types.SAVE_GAME:
-            let index = state.findIndex((el)=> el.id === action.payload.id)
-            if(index > -1)
-            {
-                return [...state.slice(0,index),
-                    action.payload,
-                    ...state.slice(index+1) ]
+            const id = action.payload.id
+            let ids = state.ids;
+            let map = state.map;
+            if (!map[id]) {
+                ids = [...ids, id];
             }
-            return  [...state, action.payload]
-            // newState[action.payload.id] = action.payload;
-            // return newState;
+            map[id] = action.payload;
+            return { ids, map };
         default:
             return state;
     }

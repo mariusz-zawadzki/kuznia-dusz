@@ -18,6 +18,7 @@ class App extends Component {
           history.push('/signin')
         }
         else if (user) {
+          localStorage.setItem('authId', user.uid);
           history.push('/games')
         }
       });

@@ -74,6 +74,7 @@ export function saveGame(gameData) {
             game.owners = owners;
         }
         game.id = newGame.id;
+        console.log(game);
         newGame
             .set(game)
             .then(function (doc) {

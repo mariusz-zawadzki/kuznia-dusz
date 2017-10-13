@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
-import { Route, Switch, Link, NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Route, Switch, NavLink } from 'react-router-dom'
 import './App.css';
 import Games from './components/games/Games'
 import SignOut from './components/auth/signout'
@@ -12,40 +12,40 @@ import * as actions from './actions/index'
 class App extends Component {
   componentWillMount() {
     if (!this.props.auth) {
-      let {history, location} = this.props;
-      firebase.auth().onAuthStateChanged((user)=>{
-          if(!user && location.pathname !== '/signout'){
-            history.push('/signin')
-          }
-          else if(user){
-            history.push('/games')
-          }
+      let { history, location } = this.props;
+      firebase.auth().onAuthStateChanged((user) => {
+        if (!user && location.pathname !== '/signout') {
+          history.push('/signin')
+        }
+        else if (user) {
+          history.push('/games')
+        }
       });
     }
   }
 
   render() {
     return (
-        <div className="row">
-          <div className="col">
-            <nav className="nav-bar">
-              This is top title bar.
-              <Link to="/signin">Login/SignUp</Link>
-              <Link to="/signout">Logout</Link>
+      <div className="row">
+        <div className="col">
+          <div className="navbar">
+            <nav className="nav nav-left">
+              <NavLink className="nav-link" activeClassName="active" to="/games">Gry</NavLink>
             </nav>
-            <nav className="nav-bar">
-              This is menu bar.
-          <NavLink to="/games">Gry</NavLink>
+            <nav className="nav nav-right">
+              <NavLink className="nav-link" activeClassName="active" to="/signin">Login/SignUp</NavLink>
+              <NavLink className="nav-link" activeClassName="active" to="/signout">Logout</NavLink>
             </nav>
-            <div >
-              <Switch>
-                <Route path={`/signout`} exact={true} component={SignOut} />
-                <Route path={`/signin`} exact={true} component={SignIn} />
-                <Route path={`/games`} component={Games} />
-              </Switch>
-            </div>
+          </div>
+          <div >
+            <Switch>
+              <Route path={`/signout`} exact={true} component={SignOut} />
+              <Route path={`/signin`} exact={true} component={SignIn} />
+              <Route path={`/games`} component={Games} />
+            </Switch>
           </div>
         </div>
+      </div>
     );
   }
 }

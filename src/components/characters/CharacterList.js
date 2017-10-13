@@ -9,15 +9,19 @@ class CharacterList extends Component {
         let { match, characters } = this.props;
         let charactersList = characters.map((character) => {
             return (
-                <li key={character.id} className="list-item">
+                <li key={character.id} className="list-group-item">
                     <Link to={`/games/${match.params.gameId}/characters/${character.id}`}>{character.name}</Link>
                 </li>
             )
         })
         return (
             <div>
-                <Link className="character-new" to={`/games/${match.params.gameId}/characters/new`}>Add new</Link>
-                <ul className="characters-list">
+                <Link className="character-new" to={`/games/${match.params.gameId}/characters/new`}>
+                    <button className="btn btn-primary">
+                        Dodaj postać
+                </button>
+                </Link>
+                <ul className="characters-list list-group">
                     {charactersList}
                 </ul>
             </div>
@@ -27,7 +31,7 @@ class CharacterList extends Component {
 
 function mapStateToProps(state, ownProps) {
     const gameId = ownProps.match.params.gameId;
-    const gameCharacters = state.characters[gameId] || {ids:[],map: {}};
+    const gameCharacters = state.characters[gameId] || { ids: [], map: {} };
     return {
         characters: gameCharacters.ids.map((id) => gameCharacters.map[id])
     }

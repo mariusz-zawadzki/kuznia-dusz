@@ -9,7 +9,7 @@ class GamesList extends Component{
         let games = this.props.games.map((game)=>{
             return (
                 <li key={game.id} className="list-item">
-                    <Link to={`/games/${game.id}`}>{game.name}</Link>
+                    <Link to={`/games/${game.id}/characters`}>{game.name}</Link>
                 </li>
             )
         })
@@ -25,9 +25,6 @@ class GamesList extends Component{
 }
 
 function mapStateToProps(state){
-    console.log('*******************************************')
-    console.log(state.games.ids.map((id)=>state.games.map[id]))
-    console.log('*******************************************')
     return {
         games: state.games.ids.map((id)=>state.games.map[id])
     }

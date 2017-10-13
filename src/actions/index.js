@@ -5,8 +5,16 @@ import * as types from './types'
 
 
 export function signOutUser() {
-    return (dispatch) => {
-        firebase.auth().signOut().then(() => {
+    return (dispatch, getState) => {
+        firebase.auth().signOut()
+        .then(() => {
+            let listeners = getState().listeners || [];
+            listeners.forEach((e)=>e());
+            dispatch(
+                {
+                    type: types.REMOVE_LISTENERS
+                }
+            );
             dispatch(
                 {
                     type: types.SIGN_OUT
@@ -16,18 +24,22 @@ export function signOutUser() {
     }
 }
 
-export function signInUser() {
-    let provider = new fb.auth.GoogleAuthProvider();
-    return (dispatch) => firebase.auth().signInWithPopup(provider).then((user) => {
-        if (user) {
-            dispatch(
-                {
-                    type: types.SIGN_IN,
-                    payload: user.user.uid
-                }
-            );
-        }
-    });
+export function signInUser(callback) {
+    return (dispatch) => {
+        let provider = new fb.auth.GoogleAuthProvider();
+        console.log('action sign in!')
+        firebase.auth().signInWithPopup(provider).then((user) => {
+            if (user) {
+                callback(user)
+                dispatch(
+                    {
+                        type: types.SIGN_IN,
+                        payload: user.user.uid
+                    }
+                );
+            }
+        });
+    }
 }
 export function saveCharacter(characterData) {
 
@@ -62,7 +74,6 @@ export function saveGame(gameData) {
             game.owners = owners;
         }
         game.id = newGame.id;
-        console.log(getState);
         newGame
             .set(game)
             .then(function (doc) {

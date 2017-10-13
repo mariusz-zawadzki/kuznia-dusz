@@ -9,7 +9,6 @@ import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers';
 import thunk from 'redux-thunk'
 import firebase from './firebase'
-import fbase from 'firebase'
 import { Route, BrowserRouter } from 'react-router-dom'
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
@@ -17,17 +16,16 @@ const store = createStoreWithMiddleware(reducers)
 /**
 
  */
-
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     let firestore = firebase.firestore();
-    firestore.collection("games")
+    let gamesCollection = firestore.collection("games")
       .where('owners.' + user.uid, '==', 'ADMIN')
       .onSnapshot((querySnapshot) => {
         querySnapshot.docChanges.forEach((change)=>{
 
           if (change.type === "added") {
-            firestore.collection(`games/${change.doc.id}/characters`)
+            let charactersCollection = firestore.collection(`games/${change.doc.id}/characters`)
                   .onSnapshot((characterSnapshots) => {
 
                 characterSnapshots.docChanges.forEach(function (characterChange) {
@@ -41,6 +39,10 @@ firebase.auth().onAuthStateChanged((user) => {
                 });
               });
             });
+            store.dispatch({
+              type: types.ADD_LISTENER,
+              payload: charactersCollection
+            })
           }
           store.dispatch({
             type: types.SAVE_GAME,
@@ -53,31 +55,18 @@ firebase.auth().onAuthStateChanged((user) => {
       }, (error) => {
         console.log("on snapshot error: ", error)
       });
+      store.dispatch({
+        type: types.ADD_LISTENER,
+        payload: gamesCollection
+      })
   } else {
+    store.dispatch({
+      type: types.REMOVE_LISTENERS
+    });
     console.log("No logged in user");
-    let provider = new fbase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider);
-
   }
-
-  // querySnapshot.forEach(function(doc) {
-
-  //     console.log(doc.id, " => ", doc.data());
-  // });
 })
 
-// firebase.auth().onAuthStateChanged(function (user) {
-//   if (user) {
-//     console.log(user)
-//     store.dispatch(
-//       {
-//         type: types.SIGN_IN,
-//         payload: user.uid
-//       }
-//     );
-//     // const firestore = firebase.firestore();
-//   }
-// });
 
 
 ReactDOM.render(

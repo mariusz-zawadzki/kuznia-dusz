@@ -1,17 +1,8 @@
 import * as types from '../actions/types'
 
 const initial = {
-    ids: ['1', '2'],
-    map: {
-        '1': {
-            "id": "1",
-            "name": "game one"
-        },
-        '2': {
-            "id": "2",
-            "name": "game two"
-        }
-    }
+    ids: [],
+    map: {}
 };
 export default (state = initial, action) => {
     switch (action.type) {

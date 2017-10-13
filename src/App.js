@@ -18,7 +18,7 @@ class App extends Component {
             history.push('/signin')
           }
           else if(user){
-            // history.push('/games')
+            history.push('/games')
           }
       });
     }

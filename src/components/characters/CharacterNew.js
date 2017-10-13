@@ -34,10 +34,7 @@ class GameNew extends React.Component {
                         <Field
                             className="form-control"
                             name="description"
-                            component={(props)=>{
-                                return <MyCKEditor {...props} />
-                            }
-                            }
+                            component={MyCKEditor}
                             type="text"
                             placeholder="Opis" />
                     </div>

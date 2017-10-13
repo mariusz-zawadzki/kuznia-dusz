@@ -1,26 +1,16 @@
 import React, {Component} from 'react'
-import CKEditor from "react-ckeditor-component";
+// import CKEditor from "react-ckeditor-component";
+import CKEditor from './ckeditorRaw'
 
 export default class MyCKEditor extends Component {
     constructor(props) {
         super(props);
-        this.updateContent = this.updateContent.bind(this);
         this.onChange = this.onChange.bind(this);
-        console.log(props)
-        this.state = {
-            content: props.input.value,
-        }
     }
 
-    updateContent(newContent) {
-        this.setState({
-            content: newContent
-        })
-    }
-    
     onChange(evt){
-      console.log("onChange fired with event info: ", evt);
       var newContent = evt.editor.getData();
+      console.log(newContent)
       this.props.input.onChange(newContent)
       this.setState({
         content: newContent
@@ -39,7 +29,7 @@ export default class MyCKEditor extends Component {
         return (
             <CKEditor 
               activeClass="p10" 
-              content={this.state.content} 
+              content={this.props.input.value} 
               scriptUrl="/ckeditor/ckeditor.js"
               events={{
                 "blur": this.onBlur,

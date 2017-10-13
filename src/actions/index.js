@@ -27,7 +27,6 @@ export function signOutUser() {
 export function signInUser(callback) {
     return (dispatch) => {
         let provider = new fb.auth.GoogleAuthProvider();
-        console.log('action sign in!')
         firebase.auth().signInWithPopup(provider).then((user) => {
             if (user) {
                 callback(user)

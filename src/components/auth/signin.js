@@ -9,14 +9,7 @@ class SignIn extends Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  componentWillMount(){
-    if(this.props.auth){
-      this.props.history.push('/games');
-    }
-  }
-
   onClick(){
-    console.log("klik")
     const {history} = this.props;
     this.props.signInUser((user)=>{
         history.push('/games');

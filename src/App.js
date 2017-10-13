@@ -19,7 +19,7 @@ class App extends Component {
         }
         else if (user) {
           localStorage.setItem('authId', user.uid);
-          history.push('/games')
+          // history.push('/games')
         }
       });
     }

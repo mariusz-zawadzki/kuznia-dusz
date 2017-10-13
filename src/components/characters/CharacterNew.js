@@ -2,6 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import * as actions from '../../actions'
+import MyCKEditor from '../editor/ckeditor'
 class GameNew extends React.Component {
 
 
@@ -33,7 +34,10 @@ class GameNew extends React.Component {
                         <Field
                             className="form-control"
                             name="description"
-                            component="textarea"
+                            component={(props)=>{
+                                return <MyCKEditor {...props} />
+                            }
+                            }
                             type="text"
                             placeholder="Opis" />
                     </div>

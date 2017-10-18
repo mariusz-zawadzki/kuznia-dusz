@@ -1,10 +1,20 @@
-import {CHANGE_AUTH} from '../actions/types'
+import * as types from '../actions/types'
 
-export default function (state = false, action = {}) {
-
+export default (state = {
+    auth: false,
+    uid: null
+}, action) => {
     switch (action.type) {
-        case CHANGE_AUTH:
-            return action.payload;
+        case types.SIGN_IN:
+            return {
+                auth: true,
+                uid: action.payload
+            };
+        case types.SIGN_OUT:
+            return {
+                auth: false,
+                uid: action.payload
+            };
         default:
             return state;
     }

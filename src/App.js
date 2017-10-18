@@ -1,23 +1,54 @@
 import React, { Component } from 'react';
-import { Route, /*Switch*/ } from 'react-router-dom'
-// import logo from './logo.svg';
+import { connect } from 'react-redux'
+import { Route, Switch, NavLink } from 'react-router-dom'
 import './App.css';
-import Login from './components/login'
-import Main from './components/main'
-const BASE_URL =process.env.PUBLIC_URL+"/";
+import Games from './components/games/Games'
+import SignOut from './components/auth/signout'
+import SignIn from './components/auth/signin'
+import firebase from './firebase'
+import * as actions from './actions/index'
+
+
 class App extends Component {
+  componentWillMount() {
+    if (!this.props.auth) {
+      let { history, location } = this.props;
+      firebase.auth().onAuthStateChanged((user) => {
+        if (!user && location.pathname !== '/signout') {
+          history.push('/signin')
+        }
+        else if (user) {
+          localStorage.setItem('authId', user.uid);
+          // history.push('/games')
+        }
+      });
+    }
+  }
+
   render() {
     return (
-      <div className="App container">
-        {/* <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div> */}
-            <Route path={BASE_URL+"login"} exact={true}  component={Login}  />
-            <Route path={BASE_URL+""} exact={true} component={Main} />
+      <div className="row">
+        <div className="col">
+          <div className="navbar">
+            <nav className="nav nav-left">
+              <NavLink className="nav-link" activeClassName="active" to="/games">Gry</NavLink>
+            </nav>
+            <nav className="nav nav-right">
+              <NavLink className="nav-link" activeClassName="active" to="/signin">Login/SignUp</NavLink>
+              <NavLink className="nav-link" activeClassName="active" to="/signout">Logout</NavLink>
+            </nav>
+          </div>
+          <div >
+            <Switch>
+              <Route path={`/signout`} exact={true} component={SignOut} />
+              <Route path={`/signin`} exact={true} component={SignIn} />
+              <Route path={`/games`} component={Games} />
+            </Switch>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+export default connect(null, actions)(App);

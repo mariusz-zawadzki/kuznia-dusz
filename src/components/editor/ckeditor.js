@@ -10,7 +10,6 @@ export default class MyCKEditor extends Component {
 
     onChange(evt){
       var newContent = evt.editor.getData();
-      console.log(newContent)
       this.props.input.onChange(newContent)
       this.setState({
         content: newContent

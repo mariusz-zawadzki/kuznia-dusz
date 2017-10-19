@@ -3,13 +3,22 @@ import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import * as actions from '../../actions'
 import MyCKEditor from '../editor/ckeditor'
-class CharacterNew extends React.Component {
+
+
+const FileUpload = ({ input, type }) =>{
+    input.value = undefined;
+  return <input type={type} {...input} />
+}
+
+
+class ItemNew extends React.Component {
 
 
     submit(values) {
-        const gameId = this.props.match.params.gameId;
-        this.props.saveCharacter({...values, gameId});
-        this.props.history.push(`/games/${gameId}/characters`)
+        console.log(values);
+        // const gameId = this.props.match.params.gameId;
+        this.props.saveItem(values);
+        this.props.history.push(`/games/${values.gameId}/items`)
     }
 
     render() {
@@ -38,6 +47,15 @@ class CharacterNew extends React.Component {
                             type="text"
                             placeholder="Opis" />
                     </div>
+
+                    {/* <div className="form-group">
+                        <label>Zdjęcie: </label>
+                        <Field 
+                            className="form-control"
+                            name="image" 
+                            component={FileUpload} type="file" />
+
+                    </div> */}
                     <div className="buttons">
                         <button className="btn btn-primary" type="submit">Zapisz</button>
                         <button className="btn btn-danger" type="button" onClick={(e) => {
@@ -53,11 +71,14 @@ const mapStateToProps = (state, ownProps) => {
     //in case of editing
     if (ownProps.match && ownProps.match.params.gameId) {
         const gameId = ownProps.match.params.gameId;
-        const characterId = ownProps.match.params.id;
-        const gameCharacters = state.characters[gameId] || {ids:[],map:{}};
+        const itemId =  ownProps.match.params.id;
+        const gameItems = state.items[gameId] || {ids:[],map:{}};
         let newprops = {
             // properly match initial values8
-            initialValues: gameCharacters.map[characterId]
+            initialValues: {
+                ...gameItems.map[itemId],
+                gameId
+            }
         }
         return newprops;
     }
@@ -65,5 +86,5 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default connect(mapStateToProps, actions)(reduxForm({
-    form: 'character-new'
-})(CharacterNew))
+    form: 'item-new'
+})(ItemNew))

@@ -19,15 +19,15 @@ const store = createStoreWithMiddleware(reducers)
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     let firestore = firebase.firestore();
-    let gamesCollection = firestore.collection("games")
+    let gamesCollection = firestore
+      .collection("games")
       .where('owners.' + user.uid, '==', 'ADMIN')
       .onSnapshot((querySnapshot) => {
         querySnapshot.docChanges.forEach((change)=>{
-
           if (change.type === "added") {
-            let charactersCollection = firestore.collection(`games/${change.doc.id}/characters`)
-                  .onSnapshot((characterSnapshots) => {
-
+            let charactersCollection = firestore
+              .collection(`games/${change.doc.id}/characters`)
+              .onSnapshot((characterSnapshots) => {
                 characterSnapshots.docChanges.forEach(function (characterChange) {
                 store.dispatch({
                   type: types.SAVE_CHARACTER,
@@ -38,10 +38,34 @@ firebase.auth().onAuthStateChanged((user) => {
                   }
                 });
               });
+            }, 
+            (error) => {
+              console.log("on snapshot error: ", error)
             });
             store.dispatch({
               type: types.ADD_LISTENER,
               payload: charactersCollection
+            })
+            let itemsCollection = firestore
+              .collection(`games/${change.doc.id}/items`)
+              .onSnapshot((itemSnapshots) => {
+                itemSnapshots.docChanges.forEach(function (itemChange) {
+                store.dispatch({
+                  type: types.SAVE_ITEM,
+                  payload: {
+                    ...itemChange.doc.data(),
+                    gameId: change.doc.id,
+                    id: itemChange.doc.id
+                  }
+                });
+              });
+            }, 
+            (error) => {
+              console.log("on snapshot error: ", error)
+            });
+            store.dispatch({
+              type: types.ADD_LISTENER,
+              payload: itemsCollection
             })
           }
           store.dispatch({

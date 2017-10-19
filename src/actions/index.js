@@ -40,6 +40,30 @@ export function signInUser(callback) {
         });
     }
 }
+
+export function saveItem(itemData) {
+
+    return (dispatch, getState) => {
+        const item = { ...itemData };
+
+
+        const newItem = firebase
+            .firestore()
+            .collection(`games/${item.gameId}/items`)
+            .doc(item.id);
+        item.id = newItem.id;
+        newItem
+            .set(item)
+            .then(() => {
+                dispatch(
+                    {
+                        type: types.SAVE_ITEM,
+                        payload: item
+                    }
+                );
+            })
+    };
+}
 export function saveCharacter(characterData) {
 
     return (dispatch, getState) => {
@@ -73,7 +97,6 @@ export function saveGame(gameData) {
             game.owners = owners;
         }
         game.id = newGame.id;
-        console.log(game);
         newGame
             .set(game)
             .then(function (doc) {

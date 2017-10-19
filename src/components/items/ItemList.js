@@ -18,7 +18,7 @@ class ItemList extends Component {
             <div>
                 <Link className="character-new" to={`/games/${match.params.gameId}/items/new`}>
                     <button className="btn btn-primary">
-                        Dodaj postać
+                        Dodaj przedmiot
                 </button>
                 </Link>
                 <ul className="items-list list-group">

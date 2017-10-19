@@ -27,7 +27,6 @@ export default (state = initial, action) => {
             }
             map[id] = action.payload;
             items[gameId] = {ids,map}
-            console.log(items)
             return items;
         default:
             return state;

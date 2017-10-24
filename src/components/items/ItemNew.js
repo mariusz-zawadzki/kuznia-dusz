@@ -5,24 +5,61 @@ import * as actions from '../../actions'
 import MyCKEditor from '../editor/ckeditor'
 
 
-const FileUpload = ({ input, type }) =>{
+const FileUpload = (props) =>{
+    console.log(props)
+    const { input, type } = props;
     input.value = undefined;
-  return <input type={type} {...input} />
+  return <input type={type} {...input} onChange={event => {
+    input.onChange(event)
+    getBase64(event.target.files[0], (data)=>props.updatePreview(data));
+  }}/>
 }
-
+function getBase64(file, onload) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = onload;
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+ }
 
 class ItemNew extends React.Component {
 
+    constructor(props){
+        super(props);
+        this.updateImage.bind(this);
+        // this.state={
+            // image
+        // }
+    }
+
+    updateImage(data){
+        debugger;
+        console.log("Update image this",this,data);
+        this.imageInput.src = data.target.result;
+    }
+
 
     submit(values) {
-        console.log(values);
-        // const gameId = this.props.match.params.gameId;
         this.props.saveItem(values);
         this.props.history.push(`/games/${values.gameId}/items`)
     }
 
     render() {
-        const { history } = this.props;
+        const { history,item } = this.props;
+        let preview = "";
+        // if(this.props.image){
+            console.log(this.props)
+        // }
+        if(item && item.image && item.image.link)
+        {
+            console.log(item.image)
+            preview = <img style={{width:"100%"}} alt={item.name} src={item.image.link} ref={(input) => { 
+                this.imageInput = input; 
+                console.log("this",this)
+                }
+                } />
+        }
         return (
             <div className="component-character-new center">
                 <form onSubmit={this.props.handleSubmit(this.submit.bind(this))}>
@@ -48,14 +85,16 @@ class ItemNew extends React.Component {
                             placeholder="Opis" />
                     </div>
 
-                    {/* <div className="form-group">
+                    <div className="form-group">
                         <label>Zdjęcie: </label>
                         <Field 
                             className="form-control"
                             name="image" 
-                            component={FileUpload} type="file" />
+                            component={FileUpload}
+                             type="file"
+                             updatePreview={(d)=>this.updateImage(d)} />
+                    </div>
 
-                    </div> */}
                     <div className="buttons">
                         <button className="btn btn-primary" type="submit">Zapisz</button>
                         <button className="btn btn-danger" type="button" onClick={(e) => {
@@ -63,6 +102,7 @@ class ItemNew extends React.Component {
                         }}>Wróć</button>
                     </div>
                 </form>
+                        {preview}
             </div>
         );
     }
@@ -73,12 +113,14 @@ const mapStateToProps = (state, ownProps) => {
         const gameId = ownProps.match.params.gameId;
         const itemId =  ownProps.match.params.id;
         const gameItems = state.items[gameId] || {ids:[],map:{}};
+        const item = gameItems.map[itemId];
         let newprops = {
             // properly match initial values8
             initialValues: {
-                ...gameItems.map[itemId],
+                ...item,
                 gameId
-            }
+            },
+            item
         }
         return newprops;
     }

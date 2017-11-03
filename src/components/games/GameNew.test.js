@@ -2,14 +2,14 @@ import test_setup from './../../test_setup'
 import React from 'react';
 import {MemoryRouter} from 'react-router-dom'
 import { Provider } from 'react-redux';
-import GameNew from './GameNew';
+import GameNew from './GameNew.bare';
 import { shallow,mount,  configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import chai,{ expect } from 'chai';
 import chaiDom from 'chai-dom'
 import configureMockStore from 'redux-mock-store'
 
-chai.use(chaiDom)
+// chai.use(chaiDom)
 configure({ adapter: new Adapter() });
 
 

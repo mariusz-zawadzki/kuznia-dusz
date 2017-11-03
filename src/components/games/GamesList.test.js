@@ -6,6 +6,7 @@ import { shallow,mount,  configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import { expect } from 'chai';
 
+// chai.use(chaiDom)
 configure({ adapter: new Adapter() });
 
 const GAMES = [

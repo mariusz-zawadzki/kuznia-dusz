@@ -51,15 +51,19 @@ class ItemNew extends React.Component {
         // if(this.props.image){
             console.log(this.props)
         // }
+        let src = "";
+        let alt =  "Brak";
         if(item && item.image && item.image.link)
         {
-            console.log(item.image)
-            preview = <img style={{width:"100%"}} alt={item.name} src={item.image.link} ref={(input) => { 
-                this.imageInput = input; 
-                console.log("this",this)
-                }
-                } />
+            src = item.image.link;
         }
+        if(item && item.name){
+            alt = item.name;
+        }
+        if(item && item.image && item.image.pending){
+            alt = "Wgrywa się."
+        }
+        preview = <img style={{width:"100%"}} alt={alt} src={src} ref={(input) => {this.imageInput = input;}} />
         return (
             <div className="component-character-new center">
                 <form onSubmit={this.props.handleSubmit(this.submit.bind(this))}>

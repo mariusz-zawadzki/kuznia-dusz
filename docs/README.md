@@ -1,4 +1,5 @@
-# Kuźnia dusz założenia
+# "Kuźnia dusz" założenia
+Nazwa robocza, ale mnie się podoba ;-)
 ## Pomysł i pierwotny plan
 Pomysł pojawił się po ostatnim Flambergu gdzie zabrakło pewnych informacji dla duchów opiekuńczych.
 Na samym początku aplikacja miała być prostą listą postaci, przedmiotów, mocy i ich ścisłych definicji na grze, 
@@ -60,10 +61,10 @@ Teraz to czego mnie brakuje czyli jakie jest zapotrzebowanie.
 ## Pomocne linki:
 
 1. Aktualna wersja aplikacji
-   - https://kuznia-dusz.firebaseapp.com
+   - [https://kuznia-dusz.firebaseapp.com](https://kuznia-dusz.firebaseapp.com)
 1. Issue tracker (zgłąszanie pomysłów, nowych finkcjonalności, bugów itp)
    - oglądać może każdy, zgłaszać i zamykać tylko członkowie zespołu (jestem otwarty na współpracownikó)
-   - https://www.pivotaltracker.com/n/projects/2104884
+   - [https://www.pivotaltracker.com/n/projects/2104884](https://www.pivotaltracker.com/n/projects/2104884)
 1. Źródła aplikacji (czyli wszsytko co potrzebe żeby ją uruchomić samemu)
-   - WEB: https://github.com/mariusz-zawadzki/kuznia-dusz
+   - WEB: [https://github.com/mariusz-zawadzki/kuznia-dusz](https://github.com/mariusz-zawadzki/kuznia-dusz)
    - Android: w fazie projektowej ;-)

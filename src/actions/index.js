@@ -4,6 +4,7 @@ import fb from 'firebase'
 import * as types from './types'
 
 export function authenticate({history, location}){
+    return (dispatch, getState) => {
     firebase.auth().onAuthStateChanged((user) => {
         if (!user && location.pathname !== '/signout') {
           history.push('/signin')
@@ -13,6 +14,7 @@ export function authenticate({history, location}){
           // history.push('/games')
         }
       });
+    };
 }
 
 export function signOutUser() {

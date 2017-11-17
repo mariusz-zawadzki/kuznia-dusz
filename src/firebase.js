@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-require("firebaase/firestore");
+require("firebase/firestore");
 
 let config = {
   apiKey: "AIzaSyDBF6MaupuuexWvdt54OW7t5UHcs1rAijo",
